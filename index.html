@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=device-dpi">
+    <title>Canvas tests</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body onload="modules.app.init();">
+    <div id="log"></div>
+    <canvas id="mainCanvas" width="220" height="220"></canvas>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- kolejność ważna todo: requirejs? -->
+    <script src="js/models/board.js"></script>
+    <script src="js/models/field.js"></script>
+    <script src="js/models/token.js"></script>
+    <script src="js/controllers/canvasController.js"></script>
+    <script src="js/controllers/gameController.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
