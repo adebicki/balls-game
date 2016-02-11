@@ -9,7 +9,7 @@ function init(){
     var fieldWidth = canvas.width / fieldCount;
     var patternImg;
 
-    loadPattern(function(){
+    loadPattern(function() {
         console.log("pattern downloaded callback...");
         drawScene();
 
@@ -24,11 +24,11 @@ function init(){
 
     function loadPattern(callback){
         patternImg = new Image();
-        patternImg.onload = function(){
+        patternImg.onload = function() {
             console.log("pattern downloaded");
             callback();
         };
-        patternImg.onerror = function(){
+        patternImg.onerror = function() {
             console.log("loading pattern error");
         };
         patternImg.src = "img/token-background.png";

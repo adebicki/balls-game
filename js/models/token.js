@@ -15,10 +15,10 @@ modules.token = (function() {
             tokenColor = '#999';
         }
 
-        this.setPosition = function(){
+        this.setPosition = function() {
 
         };
-        this.repaint = function(){
+        this.repaint = function() {
 
         };
     }

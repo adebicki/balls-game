@@ -2,12 +2,12 @@
 
 var modules = modules || {};
 
-modules.gameController = (function(boardModel, fieldModel, tokenModel) {
+modules.gameController = (function(debug, boardModel, fieldModel, tokenModel) {
     var module = {};
 
-    module.init = function(){
-        console.log('gameController init');
+    module.init = function() {
+        debug.log('gameController init');
     };
 
     return module;
-})(modules.board, modules.field, modules.token);
+})(modules.debug, modules.board, modules.field, modules.token);

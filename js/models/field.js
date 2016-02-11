@@ -6,7 +6,7 @@ modules.field = (function() {
     var module = {};
 
     function Field() {
-        this.repaint = function(){
+        this.repaint = function() {
 
         };
     }

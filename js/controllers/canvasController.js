@@ -2,12 +2,12 @@
 
 var modules = modules || {};
 
-modules.canvasController = (function(document) {
+modules.canvasController = (function(debug, document) {
     var module = {};
 
-    module.init = function(){
-        console.log('canvasController init');
+    module.init = function() {
+        debug.log('canvasController init');
     };
 
     return module;
-})(this.document);
+})(modules.debug, this.document);

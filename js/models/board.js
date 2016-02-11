@@ -11,7 +11,7 @@ modules.board = (function() {
             y: 0
         };
         var fields = [];
-        this.repaint = function(){
+        this.repaint = function() {
 
         };
     }
