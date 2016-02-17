@@ -1,8 +1,8 @@
-'use strict';
-
 var modules = modules || {};
 
-modules.board = (function() {
+modules.board = (function(debug, config) {
+    'use strict';
+
     var module = {};
 
     function Board() {
@@ -17,4 +17,4 @@ modules.board = (function() {
     }
 
     return module;
-})();
+})(modules.debug, modules.config);

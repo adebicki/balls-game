@@ -1,24 +1,22 @@
-'use strict';
-
 var modules = modules || {};
 
 modules.resourceLoader = (function(debug) {
-    var module = {};
-    var resourcesToLoad = [];
-    var allResourcesLoadedCallback = function() {};
+    'use strict';
 
-    module.init = function(callback) {
+    var module = {};
+    //var allResourcesLoadedCallback = function() {};
+
+    module.init = function(resourcesToLoad, callback) {
         debug.log('resourceLoader init');
-        resourcesToLoad = [
-            'img/token-background.png'
-        ];
-        if (typeof callback === 'function') {
-            allResourcesLoadedCallback = callback;
-        }
-        loadResources();
+        //var allResourcesLoadedCallback;
+        //resourcesToLoad = resources;
+        //if (typeof callback === 'function') {
+            //allResourcesLoadedCallback = callback;
+        //}
+        _loadResources(resourcesToLoad, callback);
     };
 
-    function loadResources() {
+    function _loadResources(resourcesToLoad, callback) {
         debug.log('loadResources start');
 
         // http://stackoverflow.com/questions/8682085/can-i-sync-up-multiple-image-onload-calls
@@ -46,8 +44,8 @@ modules.resourceLoader = (function(debug) {
 
                 function checkIfAllDownloaded() {
                     resourcesToLoadLeft--;
-                    if(resourcesToLoadLeft === 0) {
-                        allResourcesLoadedCallback();
+                    if(typeof callback === 'function' && resourcesToLoadLeft === 0) {
+                        callback();
                     }
                 }
 

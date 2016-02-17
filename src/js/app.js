@@ -1,17 +1,21 @@
-'use strict';
-
 var modules = modules || {};
 
 modules.app = (function(debug, resourceLoader, gameController, canvasController) {
+    'use strict';
+
     var module = {};
 
-    module.init = function() {
+    module.init = function(canvas) {
         debug.log('app init');
         debug.init();
-        resourceLoader.init(function() {
-            canvasController.init();
-            gameController.init();
-        });
+        resourceLoader.init([
+                'img/token-background.png'
+            ],
+            function() {
+                canvasController.init(canvas);
+                gameController.init();
+            }
+        );
     };
 
     return module;

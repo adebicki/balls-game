@@ -1,8 +1,8 @@
-'use strict';
-
 var modules = modules || {};
 
 modules.moduleName = (function(debug) {
+    'use strict';
+
     var module = {};
 
     module.init = function() {

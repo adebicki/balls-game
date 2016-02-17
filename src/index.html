@@ -8,13 +8,16 @@
     <title>Canvas tests</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body onload="modules.app.init();">
+<body onload="modules.app.init(document.getElementById('mainCanvas'));">
     <div id="log"></div>
-    <canvas id="mainCanvas" width="220" height="220"></canvas>
+    <!-- todo: canvas 0x0 ? -->
+    <canvas id="mainCanvas" width="100" height="100"></canvas>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- kolejność ważna todo: requirejs? -->
+    <script src="js/polyfills/console-polyfill.js"></script>
+    <script src="js/polyfills/custom-polyfills.js"></script>
     <script src="js/config.js"></script>
     <script src="js/utils/debug.js"></script>
     <script src="js/utils/resourceLoader.js"></script>
