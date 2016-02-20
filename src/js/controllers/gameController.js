@@ -8,13 +8,16 @@ modules.gameController = (function(debug, canvasController) {
     module.init = function() {
         debug.log('gameController init');
 
+
         // new Board
         // new Field
         // ....
         // new Token
         // ...
 
-        canvasController.drawBoard();
+        canvasController.init();
+        canvasController.drawStartScreen();
+        // canvasController.drawAll(); / drawStartScreen();
     };
 
     return module;

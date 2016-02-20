@@ -1,22 +1,20 @@
 var modules = modules || {};
 
-modules.app = (function(debug, resourceLoader, gameController, canvasController) {
+modules.app = (function(debug, config, resourceLoader, gameController) {
     'use strict';
 
     var module = {};
 
-    module.init = function(canvas) {
+    module.init = function() {
         debug.log('app init');
         debug.init();
-        resourceLoader.init([
-                'img/token-background.png'
-            ],
+
+        resourceLoader.init(config.getResources(),
             function() {
-                canvasController.init(canvas);
                 gameController.init();
             }
         );
     };
 
     return module;
-})(modules.debug, modules.resourceLoader, modules.gameController, modules.canvasController);
+})(modules.debug, modules.config, modules.resourceLoader, modules.gameController);

@@ -1,10 +1,9 @@
 var modules = modules || {};
 
-modules.debug = (function(config) {
+modules.debug = (function(config, tools) {
     'use strict';
 
     var module = {};
-    var _emptyFunction = function() {};
 
     module.init = function() {
         module.log('debug init');
@@ -16,7 +15,7 @@ modules.debug = (function(config) {
                 console.log(txt);
             }
         } else {
-            return _emptyFunction;
+            return tools.getEmptyFunction();
         }
     })();
 
@@ -26,9 +25,9 @@ modules.debug = (function(config) {
                 console.error(txt);
             }
         } else {
-            return _emptyFunction;
+            return tools.getEmptyFunction();
         }
     })();
 
     return module;
-})(modules.config);
+})(modules.config, modules.tools);

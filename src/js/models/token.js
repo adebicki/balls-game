@@ -14,7 +14,6 @@ modules.token = (function(debug, config) {
 
         var _tokenColor;
         var _coordinates;
-        var _ctx;
 
         checkCoordinatesParameter(coordinates);
         if (typeof color === 'undefined') {
