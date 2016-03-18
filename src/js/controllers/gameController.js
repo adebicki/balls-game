@@ -16,7 +16,8 @@ modules.gameController = (function(debug, canvasController) {
         // ...
 
         canvasController.init();
-        canvasController.drawStartScreen();
+        //canvasController.drawStartScreen();
+        canvasController.drawGameScreen();
         // canvasController.drawAll(); / drawStartScreen();
     };
 

@@ -9,6 +9,7 @@ modules.app = (function(debug, config, resourceLoader, gameController) {
         debug.log('app init');
         debug.init();
 
+        // todo przenieść to do gameController?
         resourceLoader.init(config.getResources(),
             function() {
                 gameController.init();

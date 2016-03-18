@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.canvasController = (function(global, debug, config, tools, screenStart) {
+modules.canvasController = (function(global, debug, config, tools, screenStart, screenGame) {
     'use strict';
 
     var module = {};
@@ -9,6 +9,7 @@ modules.canvasController = (function(global, debug, config, tools, screenStart) 
     var _ctx;
 
     // depends on actual game state (start screen, game, outcome screen, etc.)
+    // it is defined in proper model
     var _repaintFunction;
 
     module.init = function() {
@@ -22,7 +23,7 @@ modules.canvasController = (function(global, debug, config, tools, screenStart) 
         _repaintFunction = tools.getEmptyFunction();
 
         global.addEventListener('resize', function() {
-            resizeHandler();
+            repaint();
         });
     };
 
@@ -31,58 +32,23 @@ modules.canvasController = (function(global, debug, config, tools, screenStart) 
         // todo get drawing function just once?
         _repaintFunction = screenStart.getDrawFunction();
 
-        resizeHandler();
+        repaint();
     };
 
-    //module.drawStartScreen = function() {
-    //    _repaintFunction = function() {
-    //        var virtualCanvasWidth = getVirtualCanvasWidth();
-    //        var virtualCanvasHeight = getVirtualCanvasHeight();
-    //
-    //        // clear
-    //        _ctx.fillStyle = '#fff';
-    //        _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
-    //
-    //        // all
-    //        _ctx.fillStyle = '#abc';
-    //        _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
-    //
-    //        // rectangle
-    //        _ctx.fillStyle = "#69a";
-    //        _ctx.fillRect(40, 10, virtualCanvasWidth - 80, 20);
-    //
-    //        // more rectangles
-    //        _ctx.fillStyle = "#0ba";
-    //        for(var i = 0; i < 10; i++){
-    //            if(i === 20) {
-    //                _ctx.fillStyle = "#96a";
-    //            }
-    //            _ctx.fillRect(40, (i+2) * 10 * 2, virtualCanvasWidth - 80, 10);
-    //        }
-    //
-    //        //znacznik pionu
-    //        _ctx.fillStyle = '#aa3333';
-    //        _ctx.beginPath();
-    //        _ctx.moveTo(virtualCanvasWidth / 2 , 40);
-    //        _ctx.lineTo(virtualCanvasWidth / 2 + 20, 60);
-    //        _ctx.lineTo(virtualCanvasWidth / 2 - 20, 60);
-    //        _ctx.closePath();
-    //        _ctx.fill();
-    //    };
-    //
-    //    resizeHandler();
-    //};
+    module.drawGameScreen = function() {
 
+        // todo get drawing function just once?
+        _repaintFunction = screenGame.getDrawFunction();
 
+        repaint();
+    };
 
-
-    // todo: rename? - last call in draw...() should be repaint()...
-    function resizeHandler() {
-        debug.log('canvasController resizeHandler (WHY 2 TIMES SOMETIMES :) ?)');
+    function repaint() {
+        debug.log('canvasController repaint (WHY 2 TIMES SOMETIMES :) ?)');
 
         resizeCanvas(getFullDocumentWidth(), getFullDocumentHeight());
         reorient();
-        repaint();
+        useRepaintFunction();
     }
 
     function reorient() {
@@ -108,7 +74,7 @@ modules.canvasController = (function(global, debug, config, tools, screenStart) 
         }
     }
 
-    function repaint() {
+    function useRepaintFunction() {
         if(typeof _repaintFunction === 'function') {
 
             debug.log('CIEKAWOSTKA - MOŻNA PRZEKAZAĆ CAŁY MODUŁ canvasController - do przemyślenia');
@@ -149,9 +115,9 @@ modules.canvasController = (function(global, debug, config, tools, screenStart) 
             getVirtualCanvasWidth: getVirtualCanvasWidth,
             getVirtualCanvasHeight: getVirtualCanvasHeight
         }
-    };
+    }
 
     //module.getCanvasUtils = getCanvasUtils;
 
     return module;
-})(typeof window === 'undefined' ? this : window, modules.debug, modules.config, modules.tools, modules.screenStart);
+})(typeof window === 'undefined' ? this : window, modules.debug, modules.config, modules.tools, modules.screenStart, modules.screenGame);
