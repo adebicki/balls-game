@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.gameController = (function(debug, canvasController) {
+modules.gameController = (function(debug, canvasController, screenStartModel, screenGameModel) {
     'use strict';
 
     var module = {};
@@ -8,18 +8,10 @@ modules.gameController = (function(debug, canvasController) {
     module.init = function() {
         debug.log('gameController init');
 
-
-        // new Board
-        // new Field
-        // ....
-        // new Token
-        // ...
-
         canvasController.init();
-        //canvasController.drawStartScreen();
-        canvasController.drawGameScreen();
-        // canvasController.drawAll(); / drawStartScreen();
+        screenStartModel.init();
+
     };
 
     return module;
-})(modules.debug, modules.canvasController);
+})(modules.debug, modules.canvasController, modules.screenStartModel, modules.screenGameModel);

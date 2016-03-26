@@ -1,16 +1,12 @@
 var modules = modules || {};
 
-modules.canvasController = (function(global, debug, config, tools, screenStart, screenGame) {
+modules.canvasController = (function(global, debug, config, tools) {
     'use strict';
 
     var module = {};
 
     var _canvas;
     var _ctx;
-
-    // depends on actual game state (start screen, game, outcome screen, etc.)
-    // it is defined in proper model
-    var _repaintFunction;
 
     module.init = function() {
         debug.log('canvasController init');
@@ -20,35 +16,34 @@ modules.canvasController = (function(global, debug, config, tools, screenStart, 
         // todo check if canvas object
         _ctx = _canvas.getContext('2d');
 
-        _repaintFunction = tools.getEmptyFunction();
-
-        global.addEventListener('resize', function() {
-            repaint();
-        });
     };
 
-    module.drawStartScreen = function() {
-
-        // todo get drawing function just once?
-        _repaintFunction = screenStart.getDrawFunction();
-
-        repaint();
+    module.getCanvas = function() {
+        return _canvas;
     };
 
-    module.drawGameScreen = function() {
-
-        // todo get drawing function just once?
-        _repaintFunction = screenGame.getDrawFunction();
-
-        repaint();
+    module.getContext2d = function() {
+        return _canvas.getContext('2d');
     };
 
-    function repaint() {
-        debug.log('canvasController repaint (WHY 2 TIMES SOMETIMES :) ?)');
+    module.clearCanvas = function() {
+        var virtualCanvasWidth = getVirtualCanvasWidth();
+        var virtualCanvasHeight = getVirtualCanvasHeight();
+
+        // todo get from config (write util to deep copy object)
+        _ctx.fillStyle = '#fff';
+        _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
+    };
+
+    module.getVirtualCanvasWidth = getVirtualCanvasWidth;
+    module.getVirtualCanvasHeight = getVirtualCanvasHeight;
+    module.resizeHandler = resizeHandler;
+
+    function resizeHandler() {
+        debug.log('canvasController resize handler');
 
         resizeCanvas(getFullDocumentWidth(), getFullDocumentHeight());
         reorient();
-        useRepaintFunction();
     }
 
     function reorient() {
@@ -71,16 +66,6 @@ modules.canvasController = (function(global, debug, config, tools, screenStart, 
 
             _ctx.translate(translateX, translateY);
             _ctx.rotate(rot);
-        }
-    }
-
-    function useRepaintFunction() {
-        if(typeof _repaintFunction === 'function') {
-
-            debug.log('CIEKAWOSTKA - MOŻNA PRZEKAZAĆ CAŁY MODUŁ canvasController - do przemyślenia');
-
-            _repaintFunction(getCanvasUtils());
-            //_repaintFunction(modules.canvasController);
         }
     }
 
@@ -117,7 +102,5 @@ modules.canvasController = (function(global, debug, config, tools, screenStart, 
         }
     }
 
-    //module.getCanvasUtils = getCanvasUtils;
-
     return module;
-})(typeof window === 'undefined' ? this : window, modules.debug, modules.config, modules.tools, modules.screenStart, modules.screenGame);
+})(typeof window === 'undefined' ? this : window, modules.debug, modules.config, modules.tools);

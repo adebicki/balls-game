@@ -58,7 +58,7 @@ modules.token = (function(debug, config) {
 
     _p = module.Token.prototype;
 
-    _p.draw = function(canvasContext) {
+    _p.repaint = function(canvasContext) {
         var ctx;
         var coordinates;
         var color;

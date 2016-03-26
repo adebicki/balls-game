@@ -3,6 +3,8 @@ var modules = modules || {};
 modules.config = (function() {
     'use strict';
 
+    // todo: write util to deep copy object
+
     var module = {};
 
     var _config = {
@@ -15,7 +17,11 @@ modules.config = (function() {
         },
         resources: [
             'img/token-background.png'
-        ]
+        ],
+        colors: {
+            // clearCanvas: 'transparent'
+            clearCanvas: 'yellow'
+        }
     };
 
     module.isDebug = function() {
