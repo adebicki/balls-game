@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.config = (function() {
+modules.config = (function(tools) {
     'use strict';
 
     // todo: write util to deep copy object
@@ -22,6 +22,10 @@ modules.config = (function() {
             // clearCanvas: 'transparent'
             clearCanvas: 'yellow'
         }
+    };
+
+    module.getConfig = function() {
+        return tools.deepCopy(_config);
     };
 
     module.isDebug = function() {
@@ -48,4 +52,4 @@ modules.config = (function() {
     };
 
     return module;
-})();
+})(modules.tools);
