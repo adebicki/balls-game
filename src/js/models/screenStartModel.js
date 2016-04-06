@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.screenStartModel = (function(global, debug, canvasController) {
+modules.screenStartModel = (function(global, debug, tools, canvasController) {
     'use strict';
 
     var module = {};
@@ -8,10 +8,13 @@ modules.screenStartModel = (function(global, debug, canvasController) {
     var _ctx;
     var _canvas;
     var _eventHandlers;
+    // callback function from gameController
+    var _callback;
 
-    module.init = function() {
+    module.init = function(callback) {
         debug.log('screenStartModel init');
 
+        _callback = (typeof callback === 'function' ? callback : tools.getEmptyFunction());
         _canvas = canvasController.getCanvas();
         _ctx = _canvas.getContext('2d');
 
@@ -24,6 +27,7 @@ modules.screenStartModel = (function(global, debug, canvasController) {
         resizeHandler(); // once on start to set canvas size & orientation and repaint screen
     };
 
+    // todo move it to tools module?
     /**
      * Adds or removes all event listeners from _eventHandlers
      * @param addEventListeners add if true, remove if false
@@ -47,9 +51,14 @@ modules.screenStartModel = (function(global, debug, canvasController) {
         }
     }
 
+    function exitScreen(exitParameters) {
+        // remove all event handlers
+        addAllEventListeners(false);
+        _callback(exitParameters);
+    }
+
     function resizeHandler() {
-        debug.log('screenStartModel resize handler');
-        debug.log('why 2 times sometimes? :>');
+        debug.log('screenStartModel resize handler - why 2 times sometimes? :>');
 
         canvasController.resizeHandler(); // resize and reorient canvas
         repaint();
@@ -59,19 +68,20 @@ modules.screenStartModel = (function(global, debug, canvasController) {
         debug.log('Canvas was clicked');
         debug.log(e);
 
-        // test
-        addAllEventListeners(false);
+        exitScreen('Canvas was clicked, so let\'s exit');
     }
 
     function repaint() {
 
+        var i;
         var virtualCanvasWidth = canvasController.getVirtualCanvasWidth();
         var virtualCanvasHeight = canvasController.getVirtualCanvasHeight();
 
         // clear
         // todo use canvasController.clearCanvas method ?
-        _ctx.fillStyle = '#fff';
-        _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
+        // _ctx.fillStyle = '#fff';
+        // _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
+        canvasController.clearCanvas();
 
         // all
         _ctx.fillStyle = '#abc';
@@ -83,7 +93,7 @@ modules.screenStartModel = (function(global, debug, canvasController) {
 
         // more rectangles
         _ctx.fillStyle = "#0ba";
-        for(var i = 0; i < 10; i++){
+        for(i = 0; i < 10; i++) {
             if(i === 5) {
                 _ctx.fillStyle = "#96a";
             }
@@ -101,4 +111,4 @@ modules.screenStartModel = (function(global, debug, canvasController) {
     }
 
     return module;
-})(typeof window === 'undefined' ? this : window, modules.debug, modules.canvasController);
+})(typeof window === 'undefined' ? this : window, modules.debug, modules.tools, modules.canvasController);

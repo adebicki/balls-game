@@ -19,8 +19,7 @@ modules.config = (function(tools) {
             'img/token-background.png'
         ],
         colors: {
-            // clearCanvas: 'transparent'
-            clearCanvas: 'yellow'
+            clearCanvas: '#fff'
         }
     };
 

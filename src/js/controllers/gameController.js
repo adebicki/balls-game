@@ -9,9 +9,18 @@ modules.gameController = (function(debug, canvasController, screenStartModel, sc
         debug.log('gameController init');
 
         canvasController.init();
-        screenStartModel.init();
+        screenStartModel.init(screenStartOnExit);
 
     };
+
+    function screenStartOnExit(exitParam) {
+        debug.log(exitParam);
+
+        // todo add some fancy animation?
+        canvasController.clearCanvas();
+
+        screenGameModel.init();
+    }
 
     return module;
 })(modules.debug, modules.canvasController, modules.screenStartModel, modules.screenGameModel);

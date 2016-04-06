@@ -27,5 +27,9 @@ modules.screenGameModel = (function(global, debug, canvasController) {
         repaint();
     }
 
+    function repaint() {
+        debug.log('screenGameModel repaint');
+    }
+
     return module;
 })(typeof window === 'undefined' ? this : window, modules.debug, modules.canvasController);

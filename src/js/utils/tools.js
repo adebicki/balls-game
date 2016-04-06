@@ -17,6 +17,7 @@ modules.tools = (function() {
         for (i in source) {
             if (source.hasOwnProperty(i)) {
                 if (typeof source[i] === 'object') {
+                    // assuming Array.isArray polyfill is present
                     target[i] = (Array.isArray(source[i]) ? [] : {});
                     module.deepCopy(source[i], target[i]);
                 } else {
@@ -26,7 +27,9 @@ modules.tools = (function() {
         }
 
         return target;
-    }
+    };
+
+    // todo debounce and throttle functions
 
     return module;
 })();

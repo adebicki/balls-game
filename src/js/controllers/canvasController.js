@@ -7,9 +7,12 @@ modules.canvasController = (function(global, debug, config, tools) {
 
     var _canvas;
     var _ctx;
+    var _config;
 
     module.init = function() {
         debug.log('canvasController init');
+
+        _config = config.getConfig();
 
         _canvas = global.document.getElementById(config.getMainCanvasId());
 
@@ -30,8 +33,7 @@ modules.canvasController = (function(global, debug, config, tools) {
         var virtualCanvasWidth = getVirtualCanvasWidth();
         var virtualCanvasHeight = getVirtualCanvasHeight();
 
-        // todo get from config (write util to deep copy object)
-        _ctx.fillStyle = '#fff';
+        _ctx.fillStyle = _config.colors.clearCanvas; // || 'transparent';
         _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
     };
 
@@ -41,6 +43,8 @@ modules.canvasController = (function(global, debug, config, tools) {
 
     function resizeHandler() {
         debug.log('canvasController resize handler');
+
+        // todo debounce or throttle !!!
 
         resizeCanvas(getFullDocumentWidth(), getFullDocumentHeight());
         reorient();
