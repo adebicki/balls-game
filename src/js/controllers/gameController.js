@@ -1,7 +1,7 @@
 var ballsGame = ballsGame || {};
 ballsGame.modules = ballsGame.modules || {};
 
-ballsGame.modules.gameController = (function(debug, canvasController, screenStartModel, screenGameModel) {
+ballsGame.modules.gameController = (function(debug, config, resourceLoader, canvasController, screenStartModel, screenGameModel) {
     'use strict';
 
     var module = {};
@@ -10,8 +10,12 @@ ballsGame.modules.gameController = (function(debug, canvasController, screenStar
         debug.log('gameController init');
 
         canvasController.init();
-        screenStartModel.init(screenStartOnExit);
 
+        resourceLoader.init(config.getResources(),
+            function() {
+                screenStartModel.init(screenStartOnExit);
+            }
+        );
     };
 
     function screenStartOnExit(exitParam) {
@@ -24,4 +28,4 @@ ballsGame.modules.gameController = (function(debug, canvasController, screenStar
     }
 
     return module;
-})(ballsGame.modules.debug, ballsGame.modules.canvasController, ballsGame.modules.screenStartModel, ballsGame.modules.screenGameModel);
+})(ballsGame.modules.debug, ballsGame.modules.config, ballsGame.modules.resourceLoader, ballsGame.modules.canvasController, ballsGame.modules.screenStartModel, ballsGame.modules.screenGameModel);

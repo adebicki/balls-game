@@ -24,23 +24,12 @@ ballsGame.modules.screenStartModel = (function(global, debug, tools, canvasContr
             [_canvas, 'click', clickHandler]
         ];
 
-        //addAllEventListeners(true);
         tools.addOrRemoveEventListeners(_eventHandlers, true);
         resizeHandler(); // once on start to set canvas size & orientation and repaint screen
     };
 
-    // todo move it to tools module?
-    /**
-     * Adds or removes all event listeners from _eventHandlers
-     * @param addEventListeners add if true, remove if false
-     */
-    function addAllEventListeners(addEventListeners) {
-        tools.addOrRemoveEventListeners(_eventHandlers, addEventListeners);
-    }
-
     function exitScreen(exitParameters) {
         // remove all event handlers
-        // addAllEventListeners(false);
         tools.addOrRemoveEventListeners(_eventHandlers, false);
         _callback(exitParameters);
     }

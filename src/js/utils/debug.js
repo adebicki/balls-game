@@ -6,10 +6,6 @@ ballsGame.modules.debug = (function(config, tools) {
 
     var module = {};
 
-    module.init = function() {
-        module.log('debug init');
-    };
-
     module.log = (function() {
         if (config.isDebug() === true) {
             return function(txt) {
