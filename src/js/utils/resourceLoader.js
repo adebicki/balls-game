@@ -47,7 +47,7 @@ ballsGame.modules.resourceLoader = (function(debug, tools) {
             })(i);
 
         }
-    }
+    };
 
     return module;
 })(ballsGame.modules.debug, ballsGame.modules.tools);
