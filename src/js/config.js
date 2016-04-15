@@ -15,9 +15,11 @@ ballsGame.modules.config = (function(tools) {
             boardFieldsCountX: 7,
             boardFieldsCountY: 5
         },
-        resources: [
-            'img/token-background.png'
-        ],
+        resources: {
+            gameResources: [
+                'img/token-background.png'
+            ]
+        },
         colors: {
             clearCanvas: '#fff'
         }
@@ -46,8 +48,8 @@ ballsGame.modules.config = (function(tools) {
         };
     };
 
-    module.getResources = function() {
-        return _config.resources;
+    module.getGameResources = function() {
+        return _config.resources.gameResources;
     };
 
     return module;

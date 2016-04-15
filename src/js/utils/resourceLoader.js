@@ -1,24 +1,18 @@
 var ballsGame = ballsGame || {};
 ballsGame.modules = ballsGame.modules || {};
 
-ballsGame.modules.resourceLoader = (function(debug) {
+ballsGame.modules.resourceLoader = (function(debug, tools) {
     'use strict';
 
     var module = {};
     //var allResourcesLoadedCallback = function() {};
 
-    module.init = function(resourcesToLoad, callback) {
-        debug.log('resourceLoader init');
-        //var allResourcesLoadedCallback;
-        //resourcesToLoad = resources;
-        //if (typeof callback === 'function') {
-            //allResourcesLoadedCallback = callback;
-        //}
-        _loadResources(resourcesToLoad, callback);
-    };
-
-    function _loadResources(resourcesToLoad, callback) {
+    module.loadResources = function(resourcesToLoad, callback) {
         debug.log('loadResources start');
+
+        if (typeof callback !== 'function') {
+            callback = tools.getEmptyFunction();
+        }
 
         // http://stackoverflow.com/questions/8682085/can-i-sync-up-multiple-image-onload-calls
         // or (--remaining also on error)
@@ -56,4 +50,4 @@ ballsGame.modules.resourceLoader = (function(debug) {
     }
 
     return module;
-})(ballsGame.modules.debug);
+})(ballsGame.modules.debug, ballsGame.modules.tools);

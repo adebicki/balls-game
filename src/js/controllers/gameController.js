@@ -11,7 +11,7 @@ ballsGame.modules.gameController = (function(debug, config, resourceLoader, canv
 
         canvasController.init();
 
-        resourceLoader.init(config.getResources(),
+        resourceLoader.loadResources(config.getGameResources(),
             function() {
                 screenStartModel.init(screenStartOnExit);
             }
