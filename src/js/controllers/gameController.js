@@ -1,6 +1,7 @@
-var modules = modules || {};
+var ballsGame = ballsGame || {};
+ballsGame.modules = ballsGame.modules || {};
 
-modules.gameController = (function(debug, canvasController, screenStartModel, screenGameModel) {
+ballsGame.modules.gameController = (function(debug, canvasController, screenStartModel, screenGameModel) {
     'use strict';
 
     var module = {};
@@ -23,4 +24,4 @@ modules.gameController = (function(debug, canvasController, screenStartModel, sc
     }
 
     return module;
-})(modules.debug, modules.canvasController, modules.screenStartModel, modules.screenGameModel);
+})(ballsGame.modules.debug, ballsGame.modules.canvasController, ballsGame.modules.screenStartModel, ballsGame.modules.screenGameModel);

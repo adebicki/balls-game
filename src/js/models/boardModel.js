@@ -1,6 +1,7 @@
-var modules = modules || {};
+var ballsGame = ballsGame || {};
+ballsGame.modules = ballsGame.modules || {};
 
-modules.board = (function(debug, config) {
+ballsGame.modules.board = (function(debug, config) {
     'use strict';
 
     var module = {};
@@ -17,4 +18,4 @@ modules.board = (function(debug, config) {
     }
 
     return module;
-})(modules.debug, modules.config);
+})(ballsGame.modules.debug, ballsGame.modules.config);

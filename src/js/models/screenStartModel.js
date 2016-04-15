@@ -1,6 +1,7 @@
-var modules = modules || {};
+var ballsGame = ballsGame || {};
+ballsGame.modules = ballsGame.modules || {};
 
-modules.screenStartModel = (function(global, debug, tools, canvasController) {
+ballsGame.modules.screenStartModel = (function(global, debug, tools, canvasController) {
     'use strict';
 
     var module = {};
@@ -94,4 +95,4 @@ modules.screenStartModel = (function(global, debug, tools, canvasController) {
     }
 
     return module;
-})(typeof window === 'undefined' ? this : window, modules.debug, modules.tools, modules.canvasController);
+})(typeof window === 'undefined' ? this : window, ballsGame.modules.debug, ballsGame.modules.tools, ballsGame.modules.canvasController);

@@ -1,6 +1,7 @@
-var modules = modules || {};
+var ballsGame = ballsGame || {};
+ballsGame.modules = ballsGame.modules || {};
 
-modules.field = (function() {
+ballsGame.modules.field = (function() {
     'use strict';
 
     var module = {};

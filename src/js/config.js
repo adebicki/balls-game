@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.config = (function(tools) {
+ballsGame.modules.config = (function(tools) {
     'use strict';
 
     // todo: write util to deep copy object
@@ -51,4 +51,4 @@ modules.config = (function(tools) {
     };
 
     return module;
-})(modules.tools);
+})(ballsGame.modules.tools);

@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.moduleName = (function(debug) {
+ballsGame.modules.moduleName = (function(debug) {
     'use strict';
 
     var module = {};
@@ -10,4 +10,4 @@ modules.moduleName = (function(debug) {
     };
 
     return module;
-})(modules.debug);
+})(ballsGame.modules.debug);

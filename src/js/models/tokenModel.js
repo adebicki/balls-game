@@ -1,6 +1,7 @@
-var modules = modules || {};
+var ballsGame = ballsGame || {};
+ballsGame.modules = ballsGame.modules || {};
 
-modules.token = (function(debug, config) {
+ballsGame.modules.token = (function(debug, config) {
     'use strict';
 
     //todo wzorzec fabryki?
@@ -75,4 +76,4 @@ modules.token = (function(debug, config) {
     };
 
     return module;
-})(modules.debug, modules.config);
+})(ballsGame.modules.debug, ballsGame.modules.config);

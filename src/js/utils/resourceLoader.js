@@ -1,6 +1,7 @@
-var modules = modules || {};
+var ballsGame = ballsGame || {};
+ballsGame.modules = ballsGame.modules || {};
 
-modules.resourceLoader = (function(debug) {
+ballsGame.modules.resourceLoader = (function(debug) {
     'use strict';
 
     var module = {};
@@ -55,4 +56,4 @@ modules.resourceLoader = (function(debug) {
     }
 
     return module;
-})(modules.debug);
+})(ballsGame.modules.debug);

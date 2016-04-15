@@ -1,6 +1,6 @@
 var modules = modules || {};
 
-modules.app = (function(debug, config, resourceLoader, gameController) {
+ballsGame.modules.app = (function(debug, config, resourceLoader, gameController) {
     'use strict';
 
     var module = {};
@@ -18,4 +18,4 @@ modules.app = (function(debug, config, resourceLoader, gameController) {
     };
 
     return module;
-})(modules.debug, modules.config, modules.resourceLoader, modules.gameController);
+})(ballsGame.modules.debug, ballsGame.modules.config, ballsGame.modules.resourceLoader, ballsGame.modules.gameController);
