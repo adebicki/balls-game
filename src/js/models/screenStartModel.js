@@ -23,7 +23,8 @@ modules.screenStartModel = (function(global, debug, tools, canvasController) {
             [_canvas, 'click', clickHandler]
         ];
 
-        addAllEventListeners(true);
+        //addAllEventListeners(true);
+        tools.addOrRemoveEventListeners(_eventHandlers, true);
         resizeHandler(); // once on start to set canvas size & orientation and repaint screen
     };
 
@@ -33,27 +34,13 @@ modules.screenStartModel = (function(global, debug, tools, canvasController) {
      * @param addEventListeners add if true, remove if false
      */
     function addAllEventListeners(addEventListeners) {
-        var i;
-        var eventHandlers = _eventHandlers;
-        var evLn = eventHandlers.length;
-        var eventHandlerInfo;
-
-        addEventListeners = !!addEventListeners;
-
-        for(i = 0; i < evLn; i++) {
-            eventHandlerInfo = eventHandlers[i];
-            if(addEventListeners === true) {
-                eventHandlerInfo[0].addEventListener(eventHandlerInfo[1], eventHandlerInfo[2], false);
-            } else {
-                eventHandlerInfo[0].removeEventListener(eventHandlerInfo[1], eventHandlerInfo[2], false);
-            }
-
-        }
+        tools.addOrRemoveEventListeners(_eventHandlers, addEventListeners);
     }
 
     function exitScreen(exitParameters) {
         // remove all event handlers
-        addAllEventListeners(false);
+        // addAllEventListeners(false);
+        tools.addOrRemoveEventListeners(_eventHandlers, false);
         _callback(exitParameters);
     }
 
@@ -77,10 +64,6 @@ modules.screenStartModel = (function(global, debug, tools, canvasController) {
         var virtualCanvasWidth = canvasController.getVirtualCanvasWidth();
         var virtualCanvasHeight = canvasController.getVirtualCanvasHeight();
 
-        // clear
-        // todo use canvasController.clearCanvas method ?
-        // _ctx.fillStyle = '#fff';
-        // _ctx.fillRect(0, 0, virtualCanvasWidth, virtualCanvasHeight);
         canvasController.clearCanvas();
 
         // all
